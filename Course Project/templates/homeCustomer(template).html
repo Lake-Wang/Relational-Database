@@ -1,0 +1,107 @@
+<html>
+<head>
+  <title>Home</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+<!--===============================================================================================-->
+</head>
+<body>
+	<style>
+		.word{
+			color:rgb(13, 22, 58); font-family: 'Calibri', arial, serif; line-height: 1.25; margin: 0 0 10px; font-size: 10px; font-weight: bold;  
+		}
+		.word2{
+			font-family: 'Calibri', arial, serif; line-height: 1.25; margin: 0 0 10px; font-size: 16px; font-weight: bold;  
+		}
+	</style>
+
+	<div class="word2" style="display:inline;">
+	<a href="/buyCustomer">Purchase Tickets</a>
+	<a href="/myspendingCustomer">My Spending</a>
+</div>
+	
+<div class="word2" style = "float:right; display:inline;"><a>Customer: {{username}} &nbsp</a><a href="/logout">Logout</a></div>
+
+<form action="/myflightCustomer" method="POST">
+	<a class="word2">Start Date </a><input name="start_date" type="date" placeholder="Start Date" required/>
+	<a class="word2">End Date </a><input name="end_date" type="date" placeholder="End Date" required/>
+	<a class="word2">Departure City </a><input name="departure_city" type="text" placeholder="departure city" value = "None" />
+	<a class="word2">Arrival City </a><input name="arrival_city" type="text" placeholder="arrival city" value = "None" />
+	<input type="submit" value = search />
+</form>
+
+
+<div class="limiter">
+  <div class="container-table100">
+    <div class="wrap-table100">
+        <div class="table">
+          <div class="row header">
+            <div class="cell">Airline Name</div>
+            <div class="cell">Flight Number</div>
+				    <div class="cell">Departure City</div>
+            <div class="cell">Departure Airport</div>
+            <div class="cell">Departure Time</div>
+            <div class="cell">Arrival City</div>
+            <div class="cell">Arrival Airpprt</div>
+            <div class="cell">Arrival Time</div>
+            <div class="cell">Price</div>
+            <div class="cell">Status</div>
+            <div class="cell">Airplane ID</div>
+          </div>
+
+          {% for row in data %}
+          <div class="row">
+            <div class="cell" data-title="Airline Name">{{ row[0] }}</div>
+            <div class="cell" data-title="Flight Number">{{ row[1] }}</div>
+            <div class="cell" data-title="Departure City">{{ row[2] }}</div>
+            <div class="cell" data-title="Departure Airport">{{ row[3] }}</div>
+            <div class="cell" data-title="Departure Time">{{ row[4] }}</div>
+            <div class="cell" data-title="Arrival City">{{ row[5] }}</div>
+            <div class="cell" data-title="Arrival Airpprt">{{ row[6] }}</div>
+            <div class="cell" data-title="Arrival Time">{{ row[7] }}</div>
+            <div class="cell" data-title="Price">{{ row[8] }}</div>
+            <div class="cell" data-title="Status">{{ row[9] }}</div>
+            <div class="cell" data-title="Airplane ID">{{ row[10] }}</div>
+          </div>
+          {% endfor %}
+        </div>
+			</div>
+		</div>
+	</div>
+
+
+	
+
+<!--===============================================================================================-->	
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+
+
+
+
+
+</body>
+
+
+</html>

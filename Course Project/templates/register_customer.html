@@ -1,0 +1,42 @@
+<html>
+<head>
+</head>
+<body>
+	<style>
+		.word{
+			color:rgb(13, 22, 58); font-family: 'Calibri', arial, serif; line-height: 1.25; margin: 0 0 10px; font-size: 10px; font-weight: bold;  
+		}
+		.word2{
+			font-family: 'Calibri', arial, serif; line-height: 1.25; margin: 0 0 10px; font-size: 16px; font-weight: bold;  
+		}
+	</style>
+	<div class="word2" style="display:inline;">
+	<a href="/register_agent">Booking Agent |</a>
+	<a href="/register_staff">Airline Staff</a>
+	</div>
+<body>
+<form action="/registerAuth_customer" method="POST">
+	<input type="email" name = "email" placeholder="email" required/> </br>
+	<input type="text" name = "name" placeholder="username" required/> </br>
+	<input type="password" name = "password" placeholder="password" required/></br>
+	<input type="text" name = "building_number" placeholder="building number" required/> </br>
+	<input type="text" name = "street" placeholder="street" required/> </br>
+	<input type="text" name = "city" placeholder="city" required/> </br>
+	<input type="text" name = "state" placeholder="state" required/> </br>
+	<input type="number" name = "phone_number" placeholder="phone number" required/> </br>
+	<input type="text" name = "passport_number" placeholder="passport number" required/> </br>
+	<input type="date" name = "passport_expiration" placeholder="passport expiration date" required/> </br>
+	<input type="text" name = "passport_country" placeholder="passport country" required/> </br>
+	<input type="date" name = "date_of_birth" placeholder="date of birth" required/> </br>
+	<input type="submit" value = Register />
+	<div class="word2" style="display:inline;">
+	{% if error %}
+		<p class="error"><strong>Error:</strong> {{error}}</p>
+	{% endif %}
+</div>
+</form>
+<div class="word2" style="display:inline;">
+<a href="/">Go back</a>
+</div>
+</body>
+</html>

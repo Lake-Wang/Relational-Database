@@ -1,0 +1,129 @@
+<html>
+<head>
+</head>
+<body>
+	<style>
+		.word{
+			color:rgb(13, 22, 58); font-family: 'Calibri', arial, serif; line-height: 1.25; margin: 0 0 10px; font-size: 10px; font-weight: bold;  
+		}
+		.word2{
+			font-family: 'Calibri', arial, serif; line-height: 1.25; margin: 0 0 10px; font-size: 16px; font-weight: bold;  
+		}
+		.error{
+			font-family: 'Calibri', arial, serif; line-height: 1.25; margin: 0 0 10px; font-size: 16px; font-weight: bold;  
+		}
+	</style>
+
+	<div class="word2" style="display:inline;">
+		<a href="/homeCustomer">My Flights |</a>
+		<a href="/myspendingCustomer">My Spending</a>
+	  </div>
+	
+	  <div class="word2" style = "float:right; display:inline;"><a>Customer: {{username}} &nbsp</a><a href="/logout">Logout</a></div>
+	
+
+
+<form action="/searchflightCustomer" method="POST">
+	<a class="word2">Departure City </a><input list="cities" name="departure_city" type="text" placeholder="departure city" required />
+	<a class="word2">Arrival City </a><input list="cities" name="arrival_city" type="text" placeholder="arrival city" required/>
+	<a class="word2">Start Date </a><input name="start_date" type="date" placeholder="Start Date" required/>
+	<a class="word2">End Date </a><input name="end_date" type="date" placeholder="End Date" required/>
+	<datalist id="cities">
+		{% for val in city %}
+			<option value={{val}}>
+		{% endfor %}
+	</datalist>
+	<input type="submit" value = search />
+</form>
+
+<style type="text/css">
+	table, th, td{
+		border: 1px solid black;
+	}
+	button{
+    display:inline-block;
+    padding:0.3em 1.2em;
+    margin:0 0.3em 0.3em 0;
+    border-radius:2em;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-family:'Roboto',sans-serif;
+    font-weight:300;
+    color:#FFFFFF;
+	vertical-align: middle;
+    background-color:#4eb5f1;
+    text-align:center;
+    transition: all 0.2s;
+    }
+    button:hover{
+    background-color:#4095c6;
+    }
+    @media all and (max-width:30em){
+    button{
+    display:block;
+    margin:0.2em auto;
+    }
+    }
+	
+</style>
+
+<table >
+	<div class="word2">
+		<thead>
+			<tr>
+				<th>Airline Name</th>
+				<th>Flight Number</th>
+				<th>Departure City</th>
+				<th>Departure Airport</th>
+				<th>Departure Time</th>
+				<th>Arrival City</th>
+				<th>Arrival Airpprt</th>
+				<th>Arrival Time</th>
+				<th>Price</th>
+				<th>Status</th>
+				<th>Airplane ID</th>
+				<th class="right floating">Action</th>
+			</tr>
+			</thead>
+		</div>
+			<tbody>
+			{% for row in data %}
+				<tr>
+					{% for col in row %}
+						<td>{{ col }}</td>
+					{% endfor %}
+					{% if row[-1] %}
+					{% if row in flight %}
+						<td class="right floating">
+							<form>
+								<button class="buttons" type="submit"
+										name = "button"
+										value = "{{ row }}"
+										formaction="/buyflightCustomer"
+										formmethod="post">
+									<i class="cart icon"></i>
+									Buy
+								</button>
+							</form>
+							{% if flight_num in row %}
+								{% if error %}
+									<p class="error"><strong>Error:</strong> {{error}}</p>
+								{% endif %}
+							{%endif%}
+						</td>
+						{% else %}
+						<td class="error">Stop selling tickets.</td>
+						{% endif %}
+					{% else %}
+						<td class="right floating"></td>
+					{% endif %}
+				</tr>
+			{% endfor %}
+		</tbody>
+	</div>
+</table>
+
+</body>
+
+
+</html>

@@ -1,0 +1,87 @@
+<html lang="en">
+<head>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js'></script>
+	<meta charset="utf-8">
+</head>
+
+<style>
+	.word{
+		color:rgb(13, 22, 58); font-family: 'Calibri', arial, serif; line-height: 1.25; margin: 0 0 10px; font-size: 10px; font-weight: bold;  
+	}
+	.word2{
+		font-family: 'Calibri', arial, serif; line-height: 1.25; margin: 0 0 10px; font-size: 16px; font-weight: bold;  
+	}
+</style>
+
+<body>
+	<div class="word2" style="display:inline;">
+	<a href="/buyCustomer">Purchase Tickets |</a>
+	<a href="/homeCustomer">My Flights</a>
+  </div>
+
+  <div class="word2" style = "float:right; display:inline;"><a>Customer: {{username}} &nbsp</a><a href="/logout">Logout</a></div>
+
+  <div class="word2" style="display:inline;">
+  <b><br> {{title1}} {{total}} </b>
+  </div>
+<form action="/myspendingCustomer" method="POST">
+	<a class="word2">Start Date </a><input name="start_date" type="month" placeholder="Start Date" required />
+	<a class="word2">End Date </a><input name="end_date" type="month" placeholder="End Date" required />
+	<input type="submit" value = search />
+</form>
+
+<center>
+	<div class="word">
+    <h1>{{ title2 }}</h1>
+	</div>
+  </center>
+  <center>
+    <canvas id="chart" width="600" height="400"></canvas>
+    <script>
+      // bar chart data
+      var barData = {
+        labels : [
+          {% for item in labels %}
+           "{{ item }}",
+          {% endfor %}
+	],
+
+        datasets : [{
+          fillColor: "rgba(151,187,205,0.2)",
+          strokeColor: "rgba(151,187,205,1)",
+          pointColor: "rgba(151,187,205,1)",
+          data : [
+            {% for item in values %}
+               "{{ item }}",
+              {% endfor %}
+	    ]
+          }
+        ]
+      }
+
+     // get bar chart canvas
+     var mychart = document.getElementById("chart").getContext("2d");
+
+       steps = 10
+       max = {{ max_val }}
+
+     // draw bar chart
+     new Chart(mychart).Bar(barData, {
+       scaleOverride: true,
+       scaleSteps: steps,
+       scaleStepWidth: Math.ceil(max / steps),
+       scaleStartValue: 0,
+       scaleShowVerticalLines: true,
+       scaleShowGridLines : true,
+       barShowStroke : true,
+       scaleShowLabels: true
+       }
+     );
+
+    </script>
+  </center>
+
+</body>
+
+
+</html>

@@ -1,0 +1,38 @@
+<html>
+<head>
+</head>
+<body>
+	<style>
+		.word{
+			color:rgb(13, 22, 58); font-family: 'Calibri', arial, serif; line-height: 1.25; margin: 0 0 10px; font-size: 10px; font-weight: bold;  
+		}
+		.word2{
+			font-family: 'Calibri', arial, serif; line-height: 1.25; margin: 0 0 10px; font-size: 16px; font-weight: bold;  
+		}
+	</style>
+
+	<div class="word2" style="display:inline;">
+	<a href="/homeStaff"> Back to Homepage |</a>
+	<a href="/customerStaff"> View the Customers of a Flight |</a>
+	<a href="/createflightStaff"> Create New Flights |</a>
+	<a href="/addairportStaff"> Add New Airports |</a>
+	<a href="/viewagentsStaff"> View all Booking Agents |</a>
+	<a href="/frequentcustomerStaff"> View Most Frequent Customers |</a>
+	<a href="/reportsStaff"> View Reports |</a>
+	<a href="/revenueStaff"> Comparison of Revenue earned |</a>
+	<a href="/destinationStaff"> View Top Destinations</a>
+</div>
+	
+<div class="word2" style = "float:right; display:inline;"><a>Customer: {{username}} &nbsp</a><a href="/logout">Logout</a></div>
+
+<form action="/addairplaneStaff" method="POST">
+	<input type="text" name = "airline_name" placeholder="airline name" required/> </br>
+	<input type="number" name = "airplane_id" placeholder="airplane id" required/> </br>
+	<input type="number" name = "seats" placeholder="seat number" required/> </br>
+	<input type="submit" value = Add />
+	{% if error %}
+		<p class="word2"><strong>Error:</strong> {{error}}</p>
+	{% endif %}
+</form>
+</body>
+</html>

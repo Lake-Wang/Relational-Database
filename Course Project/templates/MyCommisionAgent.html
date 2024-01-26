@@ -1,0 +1,41 @@
+<html lang="en">
+<head>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js'></script>
+	<meta charset="utf-8">
+</head>
+
+<style>
+	.word{
+		color:rgb(13, 22, 58); font-family: 'Calibri', arial, serif; line-height: 1.25; margin: 0 0 10px; font-size: 10px; font-weight: bold;  
+	}
+	.word2{
+		font-family: 'Calibri', arial, serif; line-height: 1.25; margin: 0 0 10px; font-size: 16px; font-weight: bold;  
+	}
+</style>
+
+<body>
+	<div class="word2" style="display:inline;">
+	<a href="/buyAgent">Purchase Tickets |</a>
+	<a href="/homeAgent">My Flights |</a>
+  <a href="/topcustomerAgent">Top Customers</a>
+  </div>
+
+  <div class="word2" style = "float:right; display:inline;"><a>Customer: {{username}} &nbsp</a><a href="/logout">Logout</a></div>
+
+<form action="/MyCommisionAgent" method="POST">
+	<a class="word2">Start Date </a><input name="start_date" type="date" placeholder="Start Date" required />
+	<a class="word2">End Date </a><input name="end_date" type="date" placeholder="End Date" required />
+	<input type="submit" value = search />
+</form>
+
+	<div class="word2">
+    <a>{{ title1 }} {{total}}</a>
+    <a><br>{{ title2 }} {{ticket}}</a>
+    <a><br>{{ title3 }} {{avg}}</a>
+	</div>
+  
+
+</body>
+
+
+</html>

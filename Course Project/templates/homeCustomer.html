@@ -1,0 +1,102 @@
+<html>
+<head>
+	<script>
+		$(document).ready(function(e) { 
+		var counter = 0;
+		if (window.history && window.history.pushState) {
+			$(window).on('popstate', function () {
+				window.history.pushState('forward', null, '#');
+				//window.location.href="ad.html";   // 回退时跳转到新页面
+				window.history.forward(1);
+				alert("不可回退");
+			});
+		}
+	
+		window.history.pushState('forward', null, '#'); //在IE中必须得有这两行
+		window.history.forward(1);
+	});
+	
+	$(document).ready(function(e) { 
+		var counter = 0;
+		if (window.history && window.history.pushState) {
+			$(window).on('popstate', function () {
+				window.history.pushState('backward', null, '#');
+				//window.location.href="ad.html";   // 回退时跳转到新页面
+				window.history.back(1);
+				alert("不可回退");
+			});
+		}
+	
+		window.history.pushState('backward', null, '#'); //在IE中必须得有这两行
+		window.history.back(1);
+	});
+	</script>
+</head>
+<body>
+	<style>
+		table, th, td{
+		border: 1px solid black;
+		}
+		.word{
+			color:rgb(13, 22, 58); font-family: 'Calibri', arial, serif; line-height: 1.25; margin: 0 0 10px; font-size: 10px; font-weight: bold;  
+		}
+		.word2{
+			color:rgb(13, 22, 58); font-family: 'Calibri', arial, serif; line-height: 1.25; margin: 0 0 10px; font-size: 16px; font-weight: bold;  
+		}
+	</style>
+
+	<div class="word2" style="display:inline;">
+	<a class="word2" href="/buyCustomer">Purchase Tickets |</a>
+	<a class="word2" href="/myspendingCustomer">My Spending</a>
+</div>
+	
+<div class="word2" style = "float:right; display:inline;"><a class="word2">Customer: {{username}} &nbsp</a><a class="word2" href="/logout">Logout</a></div>
+
+<form action="/myflightCustomer" method="POST">
+	<a class="word2">Start Date </a><input name="start_date" type="date" placeholder="Start Date" required/>
+	<a class="word2">End Date </a><input name="end_date" type="date" placeholder="End Date" required/>
+	<a class="word2">Departure City </a><input list="cities" name="departure_city" type="text" placeholder="departure city" value = "None">
+	<a class="word2">Arrival City </a><input list="cities" name="arrival_city" type="text" placeholder="arrival city" value = "None">
+	<datalist id="cities">
+		{% for val in city %}
+			<option value={{val}}>
+		{% endfor %}
+	</datalist>
+	<input type="submit" value = search />
+</form>
+
+
+<table>
+	<div class="word2">
+		<thead>
+			<tr>
+				<th>Airline Name</th>
+				<th>Flight Number</th>
+				<th>Departure City</th>
+				<th>Departure Airport</th>
+				<th>Departure Time</th>
+				<th>Arrival City</th>
+				<th>Arrival Airpprt</th>
+				<th>Arrival Time</th>
+				<th>Price</th>
+				<th>Status</th>
+				<th>Airplane ID</th>
+			</tr>
+			</thead>
+			<tbody>
+			{% for row in data %}
+				<tr>
+					{% for col in row %}
+						<td>{{ col }}</td>
+					{% endfor %}
+				</tr>
+			{% endfor %}
+		</tbody>
+	</div>
+</table>
+
+
+</body>
+
+
+</html>

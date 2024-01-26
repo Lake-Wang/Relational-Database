@@ -1,0 +1,64 @@
+<html>
+<head>
+</head>
+<body>
+	<style>
+		.word{
+			color:rgb(13, 22, 58); font-family: 'Calibri', arial, serif; line-height: 1.25; margin: 0 0 10px; font-size: 10px; font-weight: bold;  
+		}
+		.word2{
+			font-family: 'Calibri', arial, serif; line-height: 1.25; margin: 0 0 10px; font-size: 16px; font-weight: bold;  
+		}
+	</style>
+
+	<div class="word2" style="display:inline;">
+	<a href="/homeStaff">Back to Homepage |</a>
+	<a href="/customerStaff">View the Customers of a Flight |</a>
+	<a href="/createflightStaff"> Create New Flights |</a>
+	<a href="/addairplaneStaff"> Add New Airplanes |</a>
+	<a href="/addairportStaff"> Add New Airports |</a>
+	<a href="/viewagentsStaff"> View all Booking Agents |</a>
+	<a href="/reportsStaff"> View Reports |</a>
+	<a href="/revenueStaff"> Comparison of Revenue earned |</a>
+	<a href="/destinationStaff"> View Top Destinations</a>
+</div>
+	
+<div class="word2" style = "float:right; display:inline;"><a>Customer: {{username}} &nbsp</a><a href="/logout">Logout</a></div>
+
+<form action="/takenStaff" method="POST">
+	<a class="word2">Customer Email </a><input name="email" type="text" placeholder="Customer Email" required/>
+	<input type="submit" value = search />
+</form>
+
+<style type="text/css">
+	table, th, td{
+		border: 1px solid black;
+	}
+</style>
+
+<table class="responstable">
+	<div class="word2">
+		<thead>
+			<tr>
+				<th>Customer Name</th>
+				<th>Customer Email</th>
+				<th>Number of Tickets Bought in Last Year</th>
+			</tr>
+			</thead>
+			<tbody>
+			{% for row in data %}
+				<tr>
+					{% for col in row %}
+						<td>{{ col }}</td>
+					{% endfor %}
+				</tr>
+			{% endfor %}
+		</tbody>
+	</div>
+</table>
+
+
+</body>
+
+
+</html>

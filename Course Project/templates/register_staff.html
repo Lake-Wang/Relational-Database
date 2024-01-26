@@ -1,0 +1,36 @@
+<html>
+<head>
+</head>
+<body>
+	<style>
+		.word{
+			color:rgb(13, 22, 58); font-family: 'Calibri', arial, serif; line-height: 1.25; margin: 0 0 10px; font-size: 10px; font-weight: bold;  
+		}
+		.word2{
+			font-family: 'Calibri', arial, serif; line-height: 1.25; margin: 0 0 10px; font-size: 16px; font-weight: bold;  
+		}
+	</style>
+	<div class="word2" style="display:inline;">
+	<a href="/register_customer">Customer |</a>
+	<a href="/register_agent">Booking Agent</a>
+	</div>
+<body>
+<form action="/registerAuth_staff" method="POST">
+	<input type="text" name = "username" placeholder="username" required/> </br>
+	<input type="password" name = "password" placeholder="password" required/></br>
+	<input type="text" name = "first_name" placeholder="first name" required/> </br>
+	<input type="text" name = "last_name" placeholder="last name" required/> </br>
+	<input type="date" name = "date_of_birth" placeholder="date of birth" required/> </br>
+	<input type="text" name = "airline_name" placeholder="airline name" required/> </br>
+	<input type="submit" value = Register />
+	<div class="word2" style="display:inline;">
+	{% if error %}
+		<p class="error"><strong>Error:</strong> {{error}}</p>
+	{% endif %}
+</div>
+</form>
+<div class="word2" style="display:inline;">
+<a href="/">Go back</a>
+</div>
+</body>
+</html>

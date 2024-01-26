@@ -1,0 +1,65 @@
+<html>
+<head>
+	<script>
+		$(document).ready(function(e) { 
+		var counter = 0;
+		if (window.history && window.history.pushState) {
+			$(window).on('popstate', function () {
+				window.history.pushState('forward', null, '#');
+				//window.location.href="ad.html";   // 回退时跳转到新页面
+				window.history.forward(1);
+				alert("不可回退");
+			});
+		}
+	
+		window.history.pushState('forward', null, '#'); //在IE中必须得有这两行
+		window.history.forward(1);
+	});
+	
+	$(document).ready(function(e) { 
+		var counter = 0;
+		if (window.history && window.history.pushState) {
+			$(window).on('popstate', function () {
+				window.history.pushState('backward', null, '#');
+				//window.location.href="ad.html";   // 回退时跳转到新页面
+				window.history.back(1);
+				alert("不可回退");
+			});
+		}
+	
+		window.history.pushState('backward', null, '#'); //在IE中必须得有这两行
+		window.history.back(1);
+	});
+	</script>
+</head>
+<body>
+	<style>
+		.word{
+			color:rgb(13, 22, 58); font-family: 'Calibri', arial, serif; line-height: 1.25; margin: 0 0 10px; font-size: 10px; font-weight: bold;  
+		}
+		.word2{
+			font-family: 'Calibri', arial, serif; line-height: 1.25; margin: 0 0 10px; font-size: 16px; font-weight: bold;  
+		}
+	</style>
+<div class="word2" style="display:inline;">
+	<a href="/login_agency">Booking Agent |</a>
+	<a href="/login_staff">Airline Staff</a>
+</div>
+<form action="/loginAuthCustomer" method="POST">
+	<input type="email" name = "email" placeholder="Email" required/> </br>
+	<input type="password" name = "password" placeholder="Password" required/></br>
+	<input type="submit" value = Login />
+	<div class="word2" style="display:inline;">
+	{% if error %}
+		<p class="error"><strong>Error:</strong> {{error}}</p>
+	{% endif %}
+</div>
+</form>
+<div class="word2" style="display:inline;">
+<a href="/">Go back</a>
+</div>
+
+</body>
+
+
+</html>

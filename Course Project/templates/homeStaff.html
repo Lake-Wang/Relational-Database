@@ -1,0 +1,187 @@
+<html>
+<head>
+</head>
+<body>
+	<style>
+		.word{
+			color:rgb(13, 22, 58); font-family: 'Calibri', arial, serif; line-height: 1.25; margin: 0 0 10px; font-size: 10px; font-weight: bold;  
+		}
+		.word2{
+			font-family: 'Calibri', arial, serif; line-height: 1.25; margin: 0 0 10px; font-size: 16px; font-weight: bold;  
+		}
+	</style>
+
+	<div class="word2" style="display:inline;">
+		<a href="/customerStaff">View the Customers of a Flight |</a>
+		<a href="/createflightStaff"> Create New Flights |</a>
+		<a href="/addairplaneStaff"> Add New Airplanes |</a>
+		<a href="/addairportStaff"> Add New Airports |</a>
+		<a href="/viewagentsStaff"> View all Booking Agents |</a>
+		<a href="/frequentcustomerStaff"> View Most Frequent Customers |</a>
+		<a href="/reportsStaff"> View Reports |</a>
+		<a href="/revenueStaff"> Comparison of Revenue Earned |</a>
+		<a href="/destinationStaff"> View Top Destinations</a>
+</div>
+	
+<div class="word2" style = "float:right; display:inline;"><a>Staff: {{username}} &nbsp</a><a href="/logout">Logout</a></div>
+
+<form action="/myflightStaff" method="POST">
+	<a class="word2">Start Date </a><input name="start_date" type="date" placeholder="Start Date" required/>
+	<a class="word2">End Date </a><input name="end_date" type="date" placeholder="End Date" required/>
+	<a class="word2">Departure City </a><input list="cities" name="departure_city" type="text" placeholder="departure city" value = "None" />
+	<a class="word2">Arrival City </a><input list="cities" name="arrival_city" type="text" placeholder="arrival city" value = "None" />
+	<datalist id="cities">
+        {% for val in city %}
+            <option value={{val}}>
+        {% endfor %}
+  </datalist>
+	<input type="submit" value = search />
+</form>
+
+
+
+<style type="text/css">
+	table, th, td{
+		border: 1px solid black;
+	}
+	button{
+    display:inline-block;
+    padding:0.3em 1.2em;
+    margin:0 0.3em 0.3em 0;
+    border-radius:2em;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-family:'Roboto',sans-serif;
+    font-weight:300;
+    color:#FFFFFF;
+	vertical-align: middle;
+    background-color:#4eb5f1;
+    text-align:center;
+    transition: all 0.2s;
+    }
+    button:hover{
+    background-color:#4095c6;
+    }
+    @media all and (max-width:30em){
+    button{
+    display:block;
+    margin:0.2em auto;
+    }
+    }
+	
+</style>
+{% if data2 %}
+<div class="word2"><a>Last updated flight:</a></div>
+<table>
+		<thead>
+			<tr>
+				<th>Airline Name</th>
+				<th>Flight Number</th>
+				<th>Departure City</th>
+				<th>Departure Airport</th>
+				<th>Departure Time</th>
+				<th>Arrival City</th>
+				<th>Arrival Airpprt</th>
+				<th>Arrival Time</th>
+				<th>Price</th>
+				<th>Status</th>
+				<th>Airplane ID</th>
+				<th class="right floating">Action</th>
+			</tr>
+			</thead>
+		</div>
+			<tbody>
+			{% for row in data2 %}
+				<tr>
+					{% for col in row %}
+						<td>{{ col }}</td>
+					{% endfor %}
+					{% if row[-1] %}
+						<td class="right floating">
+							<form>
+								<input name="status" type="text" placeholder="new status" required />
+								<button class="buttons" type="submit"
+										name = "button"
+										value = "{{ row }}"
+										formaction="/statusStaff"
+										formmethod="post">
+									<i class="cart icon"></i>
+									Submit
+								</button>
+							</form>
+							{% if row in flight%}
+								{% if error %}
+									<p class="word2"><strong>Error:</strong> {{error}}</p>
+								{% endif %}
+								{% if message %}
+									<p class="word2"> {{message}}</p>
+								{% endif %}
+							{%endif%}
+						</td>
+					{% else %}
+						<td class="right floating"></td>
+					{% endif %}
+				</tr>
+			{% endfor %}
+		</tbody>
+	</div>
+</table>
+{%endif%}
+
+{% if data2 %}
+<div class="word2"><a>Regular flight:</a></div>
+{%endif%}
+<table>
+		<thead>
+			<tr>
+				<th>Airline Name</th>
+				<th>Flight Number</th>
+				<th>Departure City</th>
+				<th>Departure Airport</th>
+				<th>Departure Time</th>
+				<th>Arrival City</th>
+				<th>Arrival Airpprt</th>
+				<th>Arrival Time</th>
+				<th>Price</th>
+				<th>Status</th>
+				<th>Airplane ID</th>
+				<th class="right floating">Action</th>
+			</tr>
+			</thead>
+		</div>
+			<tbody>
+			{% for row in data %}
+				<tr>
+					{% for col in row %}
+						<td>{{ col }}</td>
+					{% endfor %}
+					{% if row[-1] %}
+						<td class="right floating">
+							<form>
+								<input name="status" type="text" placeholder="new status" required />
+								<button class="buttons" type="submit"
+										name = "button"
+										value = "{{ row }}"
+										formaction="/statusStaff"
+										formmethod="post">
+									<i class="cart icon"></i>
+									Submit
+								</button>
+							</form>
+						</td>
+					{% else %}
+						<td class="right floating"></td>
+					{% endif %}
+				</tr>
+			{% endfor %}
+		</tbody>
+	</div>
+</table>
+
+
+</body>
+
+
+</html>
+
+
